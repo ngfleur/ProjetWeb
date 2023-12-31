@@ -8,7 +8,7 @@ class LicencieModel {
 
     private $prenom;
 
-    private $code_raccourci;
+    private $code_raccourci; // clé étrangère
 
     
 
@@ -54,7 +54,7 @@ class LicencieModel {
 
 
 
-    public function getcodeRaccourci() {
+    public function getCodeRaccourci() {
 
         return $this->$code_raccourci;
 
@@ -86,7 +86,7 @@ class LicencieModel {
 
 
 
-    public function setcodeRaccourci($code_raccourci) {
+    public function setCodeRaccourci($code_raccourci) {
 
         $this->code_raccourci=$code_raccourci;
 

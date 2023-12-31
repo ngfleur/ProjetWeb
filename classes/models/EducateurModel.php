@@ -1,27 +1,21 @@
 <?php
 
-class EducateurModel {
+class EducateurModel extends LicencieModel {
 
     private $email;  // clé primaire
-
-    private $num_licence; // clé étrangère 
 
     private $mdp;
 
     private $admin;
 
 
-    
+    public function __construct($num_licence, $nom, $prenom, $code_raccourci, $email, $mdp, $admin) {
 
-
-
-    public function __construct($email, $num_licence, $mdp, $admin) {
+        parent::__construct($num_licence, $nom, $prenom, $code_raccourci);
 
         $this->email = $email;
-
-        $this->num_licence = $num_licence;
-
-        $this->mdp = $mdp;
+        
+        $this->mdp = password_hash($mdp, PASSWORD_DEFAULT);
 
         $this->admin = $admin;
 
@@ -35,12 +29,6 @@ class EducateurModel {
 
     }
 
-
-    public function getNumLicence() {
-
-        return $this->$num_licence;
-
-    }
 
 
 
@@ -71,16 +59,9 @@ class EducateurModel {
 
 
 
-    public function setNumLicence($num_licence) {
-
-        $this->num_licence=$num_licence;
-
-    }
-
-
     public function setMdp($mdp) {
 
-        $this->mdp=$mdp;
+        $this->mdp = password_hash($mdp, PASSWORD_DEFAULT);
 
     }
 

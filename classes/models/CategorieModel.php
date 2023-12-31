@@ -19,7 +19,7 @@ class CategorieModel {
 
 
 
-    public function getcodeRaccourci() {
+    public function getCodeRaccourci() {
 
         return $this->$code_raccourci;
 
@@ -38,7 +38,7 @@ class CategorieModel {
 
     
 
-    public function setcodeRaccourci($code_raccourci) {
+    public function setCodeRaccourci($code_raccourci) {
 
         $this->code_raccourci=$code_raccourci;
 

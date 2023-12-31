@@ -10,7 +10,7 @@ class LicencieDAO {
     public function create(LicencieModel $licencie) {
         try {
             $stmt = $this->connexion->pdo->prepare("INSERT INTO licencie (num_licence, nom, prenom, code_raccourci) VALUES (?, ?, ?, ?)");
-            $stmt->execute([$licencie->getNumLicence(), $licencie->getNom(), $licencie->getPrenom(), $licencie->getcodeRaccourci()]);
+            $stmt->execute([$licencie->getNumLicence(), $licencie->getNom(), $licencie->getPrenom(), $licencie->getCodeRaccourci()]);
             return true;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs d'insertion ici
@@ -56,8 +56,8 @@ class LicencieDAO {
     // MÃ©thode pour mettre Ã  jour un licencié
     public function update(LicencieModel $licencie) {
         try {
-            $stmt = $this->connexion->pdo->prepare("UPDATE licencie SET nom = ?, prenom = ?, code_raccourci= ? WHERE num_licence = ?");
-            $stmt->execute([$licencie->getNom(), $licencie->getPrenom(), $licencie->getcodeRaccourci(), $licencie->getNumLicence()]);
+            $stmt = $this->connexion->pdo->prepare("UPDATE licencie SET num_licence = ?, nom = ?, prenom = ?, code_raccourci = ? WHERE num_licence = ?");
+            $stmt->execute([$licencie->getNumLicence(), $licencie->getNom(), $licencie->getPrenom(), $licencie->getCodeRaccourci(), $licencie->getNumLicence()]);
             return true;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs de mise Ã  jour ici
@@ -68,7 +68,7 @@ class LicencieDAO {
     // MÃ©thode pour supprimer un contact par son ID
     public function deleteByNumLicence($num_licence) {
         try {
-            $stmt = $this->connexion->pdo->prepare("DELETE FROM licencie WHERE num_licence= ?");
+            $stmt = $this->connexion->pdo->prepare("DELETE FROM licencie WHERE num_licence = ?");
             $stmt->execute([$num_licence]);
             return true;
         } catch (PDOException $e) {

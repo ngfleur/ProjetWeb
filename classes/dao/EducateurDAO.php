@@ -9,8 +9,12 @@ class EducateurDAO {
     // MÃ©thode pour insÃ©rer un nouveau educateur dans la base de donnÃ©es
     public function create(EducateurModel $educateur) {
         try {
-            $stmt = $this->connexion->pdo->prepare("INSERT INTO educateur (email, num_licence, mdp, admin ) VALUES (?, ?, ?, ?)");
-            $stmt->execute([$educateur->getEmail(),$educateur->getNumLicence(),$educateur->getMdp(), $educateur->getAdmin()]);
+            $stmt = $this->connexion->pdo->prepare("INSERT INTO licencie (num_licence, nom, prenom, code_raccourci ) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$educateur->getNumLicence(),$educateur->getNom(), $educateur->getPrenom(), $educateur->getCodeRaccourci()]);
+
+            $stmt = $this->connexion->pdo->prepare("INSERT INTO educateur (email, num_licence, mdp, admin) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$educateur->getEmail(), $educateur->getNumLicence(), $educateur->getMdp(), $educateur->getAdmin()]);
+           
             return true;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs d'insertion ici
@@ -21,12 +25,12 @@ class EducateurDAO {
     // MÃ©thode pour rÃ©cupÃ©rer un educateur par son ID
     public function getByEmail($email) {
         try {
-            $stmt = $this->connexion->pdo->prepare("SELECT * FROM educateur WHERE email = ?");
+            $stmt = $this->connexion->pdo->prepare("SELECT * FROM educateur INNER JOIN licencie ON educateur.num_licence = licencie.num_licence WHERE email = ?");
             $stmt->execute([$email]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                return new EducateurModel($row['email'], $row['num_licence'], $row['mdp'], $row['admin']);
+                return new EducateurModel( $row['num_licence'], $row['nom'], $row['prenom'],$row['code_raccourci'], $row['email'], $row['mdp'], $row['admin']);
             } else {
                 return null; // Aucun educateur trouvÃ© avec cet ID
             }
@@ -39,11 +43,11 @@ class EducateurDAO {
     // MÃ©thode pour rÃ©cupÃ©rer la liste de tous les educateurs
     public function getAll() {
         try {
-            $stmt = $this->connexion->pdo->query("SELECT * FROM educateur");
+            $stmt = $this->connexion->pdo->query("SELECT * FROM educateur INNER JOIN licencie ON educateur.num_licence = licencie.num_licence ");
             $educateurs = [];
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $educateurs[] = new EducateurModel($row['email'], $row['num_licence'], $row['mdp'], $row['admin']);
+                $educateurs[] = new EducateurModel($row['num_licence'], $row['nom'], $row['prenom'],$row['code_raccourci'], $row['email'], $row['mdp'], $row['admin']);
             }
 
             return $educateurs;
@@ -66,10 +70,13 @@ class EducateurDAO {
     }
 
     // MÃ©thode pour supprimer un educateur par son ID
-    public function deleteByEmail($email) {
+    public function delete(EducateurModel $educateur) {
         try {
             $stmt = $this->connexion->pdo->prepare("DELETE FROM educateur WHERE email = ?");
-            $stmt->execute([$email]);
+            $stmt->execute([$educateur->getEmail()]);
+
+            $stmt = $this->connexion->pdo->prepare("DELETE FROM licencie WHERE num_licence = ?");
+            $stmt->execute([$educateur->getNumLicence()]);
             return true;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs de suppression ici

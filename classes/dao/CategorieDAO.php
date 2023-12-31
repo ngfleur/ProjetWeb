@@ -10,7 +10,7 @@ class CategorieDAO {
     public function create(CategorieModel $categorie) {
         try {
             $stmt = $this->connexion->pdo->prepare("INSERT INTO categorie (code_raccourci, nom) VALUES (?, ?)");
-            $stmt->execute([$categorie->getcodeRaccourci(), $categorie->getNom()]);
+            $stmt->execute([$categorie->getCodeRaccourci(), $categorie->getNom()]);
             return true;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs d'insertion ici
@@ -19,7 +19,7 @@ class CategorieDAO {
     }
 
     // MÃ©thode pour rÃ©cupÃ©rer une categorie par son ID
-    public function getBycodeRaccourci($code_raccourci) {
+    public function getByCodeRaccourci($code_raccourci) {
         try {
             $stmt = $this->connexion->pdo->prepare("SELECT * FROM categorie WHERE code_raccourci = ?");
             $stmt->execute([$code_raccourci]);
@@ -56,8 +56,8 @@ class CategorieDAO {
     // MÃ©thode pour mettre Ã  jour une categorie
     public function update(CategorieModel $categorie) {
         try {
-            $stmt = $this->connexion->pdo->prepare("UPDATE categorie SET nom = ? WHERE code_raccourci = ?");
-            $stmt->execute([$categorie->getcodeRaccourci(), $categorie->getNom()]);
+            $stmt = $this->connexion->pdo->prepare("UPDATE categorie SET nom = ?, code_raccourci = ? WHERE code_raccourci = ?");
+            $stmt->execute([$categorie->getNom(), $categorie->getCodeRaccourci(), $categorie->getCodeRaccourci()]);
             return true;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs de mise Ã  jour ici
@@ -68,7 +68,7 @@ class CategorieDAO {
     // MÃ©thode pour supprimer une categorie par son ID
     public function deleteByCodeRaccourci($code_raccourci) {
         try {
-            $stmt = $this->connexion->pdo->prepare("DELETE FROM categorie WHERE code_raccourci= ?");
+            $stmt = $this->connexion->pdo->prepare("DELETE FROM categorie WHERE code_raccourci = ?");
             $stmt->execute([$code_raccourci]);
             return true;
         } catch (PDOException $e) {
