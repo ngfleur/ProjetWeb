@@ -60,14 +60,19 @@ class EducateurDAO {
     // MÃ©thode pour mettre Ã  jour un educateur
     public function update(EducateurModel $educateur) {
         try {
-            $stmt = $this->connexion->pdo->prepare("UPDATE educateur SET  num_licence = ?, mdp = ?, admin = ? WHERE email = ?");
-            $stmt->execute([$educateur->getNumLicence(),$educateur->getMdp(), $educateur->getAdmin(), $educateur->getEmail()]);
+            $stmt = $this->connexion->pdo->prepare("UPDATE licencie SET num_licence = ?, nom = ?, prenom = ?, code_raccourci = ? WHERE num_licence = ?");
+            $stmt->execute([$educateur->getNumLicence(), $educateur->getNom(), $educateur->getPrenom(), $educateur->getCodeRaccourci(), $educateur->getNumLicence()]);
+    
+            $stmt = $this->connexion->pdo->prepare("UPDATE educateur SET num_licence = ?, mdp = ?, admin = ? WHERE email = ?");
+            $stmt->execute([$educateur->getMdp(), $educateur->getAdmin(), $educateur->getEmail()]);
+            
             return true;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs de mise Ã  jour ici
             return false;
         }
     }
+
 
     // MÃ©thode pour supprimer un educateur par son ID
     public function delete(EducateurModel $educateur) {
