@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Educateur index{% endblock %}
+
+{% block body %}
+    <h1>Educateur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for educateur in educateurs %}
+            <tr>
+                <td>{{ educateur.id }}</td>
+                <td>{{ educateur.email }}</td>
+                <td>{{ educateur.roles ? educateur.roles|json_encode : '' }}</td>
+                <td>
+                    <a href="{{ path('app_educateur_show', {'id': educateur.id}) }}">show</a>
+                    <a href="{{ path('app_educateur_edit', {'id': educateur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_educateur_new') }}">Create new</a>
+{% endblock %}
