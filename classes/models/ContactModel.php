@@ -1,122 +1,53 @@
 <?php
 
-class ContactModel {
 
-    private $num_tel; // clé primaire
+class Contact {
+    public $nom;
+    public $prenom;
+    public $email;
+    public $numeroTel;
 
-    private $num_licence; // clé étrangère 
-
-    private $nom;
-
-    private $prenom;
-
-    private $email;
-
-    
-
-
-
-    public function __construct($num_tel, $num_licence, $nom, $prenom, $email) {
-
-        $this->num_tel = $num_tel;
-
-        $this->num_licence = $num_licence;
-
+    public function __construct($nom, $prenom, $email, $numeroTel) {
         $this->nom = $nom;
-
         $this->prenom = $prenom;
-
         $this->email = $email;
-
-        
-
+        $this->numeroTel = $numeroTel;
     }
+}
 
+class Categorie {
+    public $nom;
+    public $codeRaccourci;
 
-
-    public function getNumTel() {
-
-        return $this->$num_tel;
-
+    public function __construct($nom, $codeRaccourci) {
+        $this->nom = $nom;
+        $this->codeRaccourci = $codeRaccourci;
     }
+}
 
+class Licencie {
+    public $numeroLicence;
+    public $contact;
+    public $categorie;
 
-    public function getNumLicence() {
-
-        return $this->$num_licence;
-
+    public function __construct($numeroLicence, Contact $contact, Categorie $categorie) {
+        $this->numeroLicence = $numeroLicence;
+        $this->contact = $contact;
+        $this->categorie = $categorie;
     }
+}
 
+class Educateur extends Licencie {
+    public $email;
+    public $motDePasse;
+    public $estAdministrateur;
 
-
-    public function getNom() {
-
-        return $this->nom;
-
+    public function __construct($numeroLicence, Contact $contact, Categorie $categorie, $email, $motDePasse, $estAdministrateur = false) {
+        parent::__construct($numeroLicence, $contact, $categorie);
+        $this->email = $email;
+        $this->motDePasse = $motDePasse;
+        $this->estAdministrateur = $estAdministrateur;
     }
-
-
-
-    public function getPrenom() {
-
-        return $this->prenom;
-
-    }
-
-
-
-    public function getEmail() {
-
-        return $this->email;
-
-    }
-
-
-
-    
-
-    public function setNumTel($num_tel) {
-
-        $this->num_tel=$num_tel;
-
-    }
-
-
-
-    public function setNumLicence($num_licence) {
-
-        $this->num_licence=$num_licence;
-
-    }
-
-
-    public function setNom($nom) {
-
-        $this->nom=$nom;
-
-    }
-
-
-
-    public function setPrenom($prenom) {
-
-        $this->prenom=$prenom;
-
-    }
-
-
-
-    public function setEmail($email) {
-
-        $this->email=$email;
-
-    }
-
-
-
-
-    // Vous pouvez ajouter des mÃ©thodes supplÃ©mentaires ici pour manipuler les donnÃ©es du contact
-
 }
 
 ?>
