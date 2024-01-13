@@ -12,18 +12,18 @@
 =========================================================
  -->
 <!-- beautify ignore:start -->
-	<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets/" data-template="vertical-menu-template-free"> <head>
+	<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free"> <head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 
-		<title>Tables - Basic Tables | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+		<title>Typography - UI elements | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
 		<meta
 		name="description" content=""/>
 
 		<!-- Favicon -->
 		<link
-		rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico"/>
+		rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico"/>
 
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -33,22 +33,22 @@
 
 		<!-- Icons. Uncomment required icon fonts -->
 		<link
-		rel="stylesheet" href="/assets/vendor/fonts/boxicons.css"/>
+		rel="stylesheet" href="../assets/vendor/fonts/boxicons.css"/>
 
 		<!-- Core CSS -->
-		<link rel="stylesheet" href="/assets/vendor/css/core.css" class="template-customizer-core-css"/>
-		<link rel="stylesheet" href="/assets/vendor/css/theme-default.css" class="template-customizer-theme-css"/>
+		<link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css"/>
+		<link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css"/>
 		<link
-		rel="stylesheet" href="/assets/css/demo.css"/>
+		rel="stylesheet" href="../assets/css/demo.css"/>
 
 		<!-- Vendors CSS -->
-		<link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/><!-- Page CSS -->
+		<link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/><!-- Page CSS -->
 
-		<!-- Helpers --><script src="/assets/vendor/js/helpers.js"> </script>
+		<!-- Helpers --><script src="../assets/vendor/js/helpers.js"> </script>
 
 		<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
 		<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-		<script src="/assets/js/config.js"></script>
+		<script src="../assets/js/config.js"></script>
 	</head>
 
 	<body>
@@ -230,7 +230,7 @@
 							</a>
 						</li>
 						<!-- User interface -->
-						<li class="menu-item">
+						<li class="menu-item active open">
 							<a href="javascript:void(0)" class="menu-link menu-toggle">
 								<i class="menu-icon tf-icons bx bx-box"></i>
 								<div data-i18n="User interface">User interface</div>
@@ -326,7 +326,7 @@
 										<div data-i18n="Tooltips & Popovers">Tooltips &amp; popovers</div>
 									</a>
 								</li>
-								<li class="menu-item">
+								<li class="menu-item active">
 									<a href="ui-typography.html" class="menu-link">
 										<div data-i18n="Typography">Typography</div>
 									</a>
@@ -403,7 +403,7 @@
 							</ul>
 						</li>
 						<!-- Tables -->
-						<li class="menu-item active">
+						<li class="menu-item">
 							<a href="tables-basic.html" class="menu-link">
 								<i class="menu-icon tf-icons bx bx-table"></i>
 								<div data-i18n="Tables">Tables</div>
@@ -463,7 +463,7 @@
 								<li class="nav-item navbar-dropdown dropdown-user dropdown">
 									<a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
 										<div class="avatar avatar-online">
-											<img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"/>
+											<img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"/>
 										</div>
 									</a>
 									<ul class="dropdown-menu dropdown-menu-end">
@@ -472,7 +472,7 @@
 												<div class="d-flex">
 													<div class="flex-shrink-0 me-3">
 														<div class="avatar avatar-online">
-															<img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"/>
+															<img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"/>
 														</div>
 													</div>
 													<div class="flex-grow-1">
@@ -532,131 +532,59 @@
 						<div class="container-xxl flex-grow-1 container-p-y">
 							<div class="d-flex flex-row justify-content-between">
 								<h4 class="fw-bold py-3 mb-4">
-									<span class="text-muted fw-light">Tables /</span>
-									Basic Tables
+									Categorie
 								</h4>
-								<div class="demo-inline-spacing">
-									<a href="{{ path('app_categorie_new') }}" class="btn rounded-pill btn-primary">Ajouter</a>
+							</div>
+
+							<div class="col-md-6 col-lg-4 mb-3">
+								<div class="card">
+									<h5 class="card-header">{{ categorie.nom }}</h5>
+									<div class="card-body">
+										<blockquote class="blockquote mb-0">
+											<p class="mb-0">
+												ID:
+												{{ categorie.id }}
+											</p>
+											<p class="mb-0">
+												Nom:
+												{{ categorie.nom }}</p>
+											<p class="mb-0">
+												Code raccourci:
+												{{ categorie.codeRaccourci }}</p>
+
+										</blockquote>
+									</div>
+
+								</div>
+
+								<div class="d-flex flex-row">
+									<div class="demo-inline-spacing mt-4 mx-5 d-flex gap-5">
+										<a href="{{ path('app_categorie_new') }}" class="btn rounded-pill btn-primary">edit</a>
+										<a href="{{ path('app_categorie_index') }}" class="btn rounded-pill btn-outline-primary">back to list</a>
+									</div>
 								</div>
 							</div>
 
-							<!-- Basic Bootstrap Table -->
-							<div class="card">
-								<h5 class="card-header">Table Basic</h5>
-								<div class="table-responsive text-nowrap">
-									<table class="table">
-										<thead>
-											<tr>
 
-												<th>Id</th>
-												<th>CodeRaccourci</th>
-												<th>Nom</th>
-												<th>actions</th>
+							<!-- / Layout wrapper -->
 
 
-											</tr>
-										</thead>
-										<tbody class="table-border-bottom-0">
+							<!-- Core JS -->
+							<!-- build:js assets/vendor/js/core.js --><script src="../assets/vendor/libs/jquery/jquery.js"> </script>
+							<script src="../assets/vendor/libs/popper/popper.js"></script>
+							<script src="../assets/vendor/js/bootstrap.js"></script>
+							<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-											{% for categorie in categories %}
-												<tr>
-													<td>{{ categorie.id }}</td>
-													<td>{{ categorie.codeRaccourci }}</td>
-													<td>{{ categorie.nom }}</td>
+							<script src="../assets/vendor/js/menu.js"></script>
+							<!-- endbuild -->
 
-													<td>
-														<div class="dropdown">
-															<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-																<i class="bx bx-dots-vertical-rounded"></i>
-															</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="{{ path('app_categorie_show', {'id': categorie.id}) }}">
-																	<i class="bx bx-eyes-alt me-1"></i>
-																	Show</a>
-																<a class="dropdown-item" href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">
-																	<i class="bx bx-edit-alt me-1"></i>
-																	Edit</a>
-																<a class="dropdown-item" href="javascript:void(0);">
-																	<i class="bx bx-trash me-1"></i>
-																	Delete</a>
-															</div>
-														</div>
-													</td>
+							<!-- Vendors JS -->
 
+							<!-- Main JS --><script src="../assets/js/main.js"> </script>
 
-												</tr>
-											{% else %}
-												<tr>
-													<td colspan="4">no records found</td>
-												</tr>
-											{% endfor %}
+							<!-- Page JS -->
 
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<!--/ Basic Bootstrap Table -->
-
-
-						</div>
-						<!-- / Content -->
-
-						<!-- Footer -->
-						<footer class="content-footer footer bg-footer-theme">
-							<div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-								<div class="mb-2 mb-md-0">
-									©
-									<script>
-										document.write(new Date().getFullYear());
-									</script>
-									, made with ❤️ by
-									<a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-								</div>
-								<div>
-									<a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-									<a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-									<a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Documentation</a>
-
-									<a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link me-4">Support</a>
-								</div>
-							</div>
-						</footer>
-						<!-- / Footer -->
-
-						<div class="content-backdrop fade"></div>
-					</div>
-					<!-- Content wrapper -->
-				</div>
-				<!-- / Layout page -->
-			</div>
-
-			<!-- Overlay -->
-			<div class="layout-overlay layout-menu-toggle"></div>
-		</div>
-		<!-- / Layout wrapper -->
-
-		<div class="buy-now">
-			<a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/" target="_blank" class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
-		</div>
-
-		<!-- Core JS -->
-		<!-- build:js assets/vendor/js/core.js -->
-		<script src="/assets/vendor/libs/jquery/jquery.js"></script>
-		<script src="/assets/vendor/libs/popper/popper.js"></script>
-		<script src="/assets/vendor/js/bootstrap.js"></script>
-		<script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-		<script src="/assets/vendor/js/menu.js"></script>
-		<!-- endbuild -->
-
-		<!-- Vendors JS -->
-
-		<!-- Main JS --><script src="/assets/js/main.js"> </script>
-
-		<!-- Page JS -->
-
-		<!-- Place this tag in your head or just before your close body tag. -->
-		<script async defer src="https://buttons.github.io/buttons.js"></script>
-	</body>
-</html>
+							<!-- Place this tag in your head or just before your close body tag. -->
+							<script async defer src="https://buttons.github.io/buttons.js"></script>
+						</body>
+					</html>
