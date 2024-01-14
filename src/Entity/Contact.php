@@ -27,7 +27,7 @@ class Contact
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\OneToOne(inversedBy: 'contact', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'contact')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Licencie $licencie = null;
 

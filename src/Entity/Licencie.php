@@ -33,7 +33,6 @@ class Licencie
 
     public function __construct()
     {
-        $this->mailContacts = new ArrayCollection();
     }
 
     public function getId(): ?int
