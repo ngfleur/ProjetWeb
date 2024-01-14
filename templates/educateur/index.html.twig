@@ -20,13 +20,21 @@
 						<th>Roles</th>
 						<th>actions</th>
 					</tr>
+
+
 				</thead>
 				<tbody class="table-border-bottom-0">
 					{% for educateur in educateurs %}
 						<tr>
 							<td>{{ educateur.id }}</td>
 							<td>{{ educateur.email }}</td>
-							<td>{{ educateur.roles ? educateur.roles|json_encode : '' }}</td>
+							<td>
+								{% if educateur.roles and 'ROLE_ADMIN' in educateur.roles %}
+									Administrateur
+								{% else %}
+									Utilisateur
+								{% endif %}
+							</td>
 							<td>
 								<div class="dropdown">
 									<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -46,7 +54,6 @@
 									</div>
 								</div>
 							</td>
-
 						</tr>
 					{% else %}
 						<tr>

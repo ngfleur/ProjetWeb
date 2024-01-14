@@ -30,6 +30,10 @@ class EducateurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $isAdmin = $request->request->get('educateur_admin');
+            if ($isAdmin) {
+                $educateur->setRoles(['ROLE_ADMIN']);
+            }
             $entityManager->persist($educateur);
             $entityManager->flush();
 

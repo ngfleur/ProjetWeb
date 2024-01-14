@@ -1,4 +1,7 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_widget(form) }}
+<div class="demo-inline-spacing mt-4 mx-5 d-flex gap-5">
+	<button class="btn rounded-pill btn-primary">{{ button_label|default('Save') }}</button>
+	<a href="{{ path('app_mail_contact_index') }}" class="btn rounded-pill btn-outline-primary">back to list</a>
+</div>
 {{ form_end(form) }}

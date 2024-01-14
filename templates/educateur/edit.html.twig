@@ -1,13 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Educateur{% endblock %}
+{% block title %}Modifier un éducateur
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Educateur</h1>
-
-    {{ include('educateur/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_educateur_index') }}">back to list</a>
-
-    {{ include('educateur/_delete_form.html.twig') }}
+	{{ include('educateur/_form.html.twig', {'button_label': 'Update'}) }}
 {% endblock %}
