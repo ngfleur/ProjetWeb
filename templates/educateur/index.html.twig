@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-	Educateur
+	Educateurs
 {% endblock %}
 {% block title_btn %}
 	<div class="demo-inline-spacing">
@@ -34,7 +34,7 @@
 									</button>
 									<div class="dropdown-menu">
 										<a class="dropdown-item" href="{{ path('app_educateur_show', {'id': educateur.id}) }}">
-											<i class="bx bx-eyes-alt me-1"></i>
+											<i class="bx bx-show-alt me-1"></i>
 											Show</a>
 										<a class="dropdown-item" href="{{ path('app_educateur_edit', {'id': educateur.id}) }}">
 											<i class="bx bx-edit-alt me-1"></i>

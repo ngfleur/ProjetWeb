@@ -23,24 +23,40 @@ class ContactController extends AbstractController
     }
 
     #[Route('/new', name: 'app_contact_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, ContactRepository $contactRepository): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
+            // Vérifier si le numéro de licence existe déjà
+            $existingContact = $contactRepository->findOneBy(['licencie' => $contact->getLicencie()]);
+                
+            if ($existingContact) {
+                $this->addFlash('error', 'Ce licencié possède déjà un contact.');
+                // Rediriger vers la page de création du contact avec un message d'erreur
+                return $this->redirectToRoute('app_contact_new');
+            }
+    
             $entityManager->persist($contact);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Contact créé avec succès.');
+    
             return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);
         }
-
+    
         return $this->render('contact/new.html.twig', [
             'contact' => $contact,
             'form' => $form,
         ]);
     }
+    
+
+
+
+
+
 
     #[Route('/{id}', name: 'app_contact_show', methods: ['GET'])]
     public function show(Contact $contact): Response

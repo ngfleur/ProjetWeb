@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-	Categorie
+	Mails éducateurs
 {% endblock %}
 {% block title_btn %}
 	<div class="demo-inline-spacing">
@@ -36,7 +36,7 @@
 									</button>
 									<divclass="dropdown-menu">
 										<aclass="dropdown-item"href="{{path('app_mail_edu_show',{'id':mail_edu.id})}}">
-											<iclass="bxbx-eyes-altme-1"></i>Show</a>
+											<iclass="bxbx-show-altme-1"></i>Show</a>
 										<aclass="dropdown-item"href="{{path('app_mail_edu_edit',{'id':mail_edu.id})}}">
 											<iclass="bxbx-edit-altme-1"></i>Edit</a>
 										<aclass="dropdown-item"href="javascript:void(0);">
