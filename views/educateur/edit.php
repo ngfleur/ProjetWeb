@@ -1,58 +1,4 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Modifier un éducateur</title>
-    <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <h1>Modifier un éducateur</h1>
-    <a href="index.php?page=educateur">Retour à la liste des éducateurs</a>
-
-    <form action="index.php?page=educateur&action=edit&id=<?= $educateur->getId(); ?>" method="post">
-        <label for="num_licence">Numéro de licence :</label>
-        <input type="text" id="num_licence" name="num_licence" value="<?= $educateur->getNumLicence(); ?>" required><br>
-
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" value="<?= $educateur->getNom(); ?>" required><br>
-
-        <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" value="<?= $educateur->getPrenom(); ?>" required><br>
-
-        <label for="id_categorie">Catégorie :</label>
-        <select id="id_categorie" name="id_categorie" required>
-            <option value="">Sélectionner une catégorie</option>
-            <?php foreach ($categories as $categorie): ?>
-                <?php if ($categorie->getId() != 1): ?>
-                    <option value="<?= $categorie->getId() ?>" <?php if ($categorie->getId() == $educateur->getIdCategorie()) echo "selected"; ?>>
-                        <?= $categorie->getNom() ?>
-                    </option>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </select><br>
-
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" value="<?= $educateur->getEmail(); ?>" required><br>
-
-        <label for="mdp">Nouveau mot de passe :</label>
-        <input type="password" id="mdp" name="mdp"><br>
-
-        <label for="admin">Accès admin :</label>
-        <input type="checkbox" id="admin" name="admin" <?php if ($educateur->getAdmin()) echo "checked"; ?>><br>
-
-        <input type="submit" name="action" value="Modifier">
-    </form>
-
-    <?php
-    // Inclure ici la logique pour traiter le formulaire de modification d'éducateur
-    ?>
-
-</body>
-</html>
-
-
-<!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets/" data-template="vertical-menu-template-free"> <head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
@@ -183,11 +129,11 @@
 							</a>
 						</li>
 
-						<!-- Contacts -->
+						<!-- educateurs -->
 						<li class="menu-item">
-							<a href="index.php?page=contact" class="menu-link">
+							<a href="index.php?page=educateur" class="menu-link">
 								<i class="menu-icon tf-icons bx bx-home-circle"></i>
-								<div data-i18n="Analytics">Contacts</div>
+								<div data-i18n="Analytics">educateurs</div>
 							</a>
 						</li>
 
@@ -269,9 +215,69 @@
 						class="content-wrapper">
 						<!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
-	<div class="d-flex flex-row justify-content-between">
+	
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Modifier educateur</h4>
 
-    
+              <!-- Basic Layout -->
+              <div class="row">
+                <div class="col-xl">
+                  <div class="card mb-4">
+                    <div class="card-body">
+					<form action="index.php?page=educateur&action=edit&id=<?php echo $educateur->getId(); ?>" method="post">
+                        <div class="mb-3">
+                          <label class="form-label" for="num_licence">Numero de licence</label>
+                          <input type="number" class="form-control" id="num_licence" name="num_licence" value="<?php echo $educateur->getNumLicence(); ?>"required>
+                          </div>
+
+						  <div class="mb-3">
+                          <label class="form-label" for="nom">Nom</label>
+                          <input type="text" class="form-control" id="nom" name="nom" value="<?php echo $educateur->getNom(); ?>" required>
+                        </div>
+   
+                        <div class="mb-3">
+                          <label class="form-label" for="prenom">prénom </label>
+                          <input type="text" class="form-control" id="prenom" name="prenom" value="<?php echo $educateur->getPrenom(); ?>" required>
+                        </div>
+
+						<div class="mb-3">
+                          <label class="form-label" for="email">Email</label>
+                          <input type="text" class="form-control" id="email" name="email" value="<?php echo $educateur->getEmail(); ?>" required>
+                        </div>
+
+						<div class="mb-3">
+                          <label class="form-label" for="id_categorie">Catégorie </label>
+						  <select class="form-control" id="id_licencie" name="id_licencie" required>
+							<?php foreach ($licencies as $licencie) : ?>
+								<option value="<?= $licencie->getId() ?>" <?php echo ($licencie->getId() == $educateur->getIdLicencie()) ? 'selected' : ''; ?>>
+									<?= $licencie->getNom() ?>
+								</option>
+							<?php endforeach; ?>
+        					</select><br>
+                          </div>
+						  <div class="mb-3">
+                          <label class="form-label" for="num_tel">Mot de passe</label>
+                          <input type="password" class="form-control" id="mdp" name="mdp" value="<?php echo $educateur->getMdp(); ?>" required >
+                          </div>
+
+						  <div class="mb-3">
+                          <label class="form-label" for="num_tel">Accès admin</label>
+                          <input type="checkbox"  id="admin" name="admin" value="<?php echo $educateur->getAdmin(); ?>" required >
+                          </div>
+
+                          <div class="demo-inline-spacing">
+                  
+                        <input type="submit" class="btn rounded-pill btn-primary" name="action" value="Ajouter">
+                        <a class="btn rounded-pill btn-outline-primary" href="index.php?page=educateur">Retour</a>
+                  </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl">
+                  
+                </div>
+              </div>
+            </div>
        
 						<!-- Content wrapper -->
 	
@@ -302,3 +308,15 @@
 		</body>
 	</html>
 </body></html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,27 +1,4 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Détails de la catégorie</title>
-    <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
-        <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <h1>Détails de la catégorie</h1>
-    <a href="index.php?page=categorie">Retour à la liste des catégories</a>
-
-    <?php if ($categorie): ?>
-        <p><strong>Nom :</strong> <?php echo $categorie->getNom(); ?></p>
-        <p><strong>Code raccourci :</strong> <?php echo $categorie->getCodeRaccourci(); ?></p>
-    <?php else: ?>
-        <p>La catégorie n'a pas été trouvée.</p>
-    <?php endif; ?>
-</body>
-</html>
-
-
-
-<!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets/" data-template="vertical-menu-template-free"> <head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
@@ -238,14 +215,40 @@
 						class="content-wrapper">
 						<!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
-	<div class="d-flex flex-row justify-content-between">
+	<div class="d-flex flex-column">
 
     
-       
+    <div class="card col-12">
+                <h5 class="card-header">Catégorie</h5>
+                <div class="table-responsive text-nowrap">
+                <?php if ($categorie): ?>
+
+                  <table class="table table-striped">
+                    
+                    <tbody class="table-border-bottom-0">
+                      <tr>
+
+                        <td class="col-3"><i class="fab fa-react fa-lg text-info me-3"></i> <strong>Nom :</strong></td>
+                        <td><?php echo $categorie->getNom(); ?></td>
+                      </tr>
+                      <tr>
+                        <td class="col-3"><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>Code Raccourci :</strong></td>
+                        <td><?php echo $categorie->getCodeRaccourci(); ?></td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+
+                  <?php else: ?>
+                <p>La catégorie n'a pas été trouvée.</p>
+                <?php endif; ?>
+                </div>
+    </div>
+    <div class="demo-inline-spacing">
+                        <a class="btn rounded-pill btn-primary" href="index.php?page=categorie&action=delete&id=<?php echo $categorie->getId(); ?>">Supprimer</a>
+                        <a class="btn rounded-pill btn-outline-primary" href="index.php?page=categorie">Retour</a>
+                        </div>
 						<!-- Content wrapper -->
-	
-    
-   
 				
 
 			<!-- Core JS -->

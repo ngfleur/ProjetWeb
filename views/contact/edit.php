@@ -1,50 +1,4 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Modifier un contact</title>
-    <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <h1>Modifier un contact</h1>
-    <a href="index.php?page=contact">Retour à la liste des contacts</a>
-
-    <form action="index.php?page=contact&action=edit&id=<?php echo $contact->getId(); ?>" method="post">
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" value="<?php echo $contact->getNom(); ?>" required><br>
-
-        <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" value="<?php echo $contact->getPrenom(); ?>" required><br>
-
-        <label for="email">Email :</label>
-        <input type="text" id="email" name="email" value="<?php echo $contact->getEmail(); ?>" required><br>
-
-        <label for="num_tel">Numéro de téléphone :</label>
-        <input type="text" id="num_tel" name="num_tel" value="<?php echo $contact->getNumTel(); ?>" required><br>
-
-        <label for="id_licencie">Licencié :</label>
-        <select class="form-control" id="id_licencie" name="id_licencie" required>
-            <?php foreach ($licencies as $licencie) : ?>
-                <option value="<?= $licencie->getId() ?>" <?php echo ($licencie->getId() == $contact->getIdLicencie()) ? 'selected' : ''; ?>>
-                    <?= $licencie->getNom() ?>
-                </option>
-            <?php endforeach; ?>
-        </select><br>
-
-        <input type="submit" name="action" value="Modifier">
-    </form>
-
-    <?php
-    // Inclure ici la logique pour traiter le formulaire de modification de contact
-    ?>
-
-</body>
-</html>
-
-
-
-<!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets/" data-template="vertical-menu-template-free"> <head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
@@ -261,9 +215,60 @@
 						class="content-wrapper">
 						<!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
-	<div class="d-flex flex-row justify-content-between">
+	
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Modifier Contact</h4>
 
-    
+              <!-- Basic Layout -->
+              <div class="row">
+                <div class="col-xl">
+                  <div class="card mb-4">
+                    <div class="card-body">
+					<form action="index.php?page=contact&action=edit&id=<?php echo $contact->getId(); ?>" method="post">
+                        <div class="mb-3">
+                          <label class="form-label" for="num_licence">Numero de licence</label>
+                          <input type="number" class="form-control" id="num_licence" name="num_licence" value="<?php echo $contact->getNumLicence(); ?>"required>
+                          </div>
+
+						  <div class="mb-3">
+                          <label class="form-label" for="nom">Nom</label>
+                          <input type="text" class="form-control" id="nom" name="nom" value="<?php echo $contact->getNom(); ?>" required>
+                        </div>
+   
+                        <div class="mb-3">
+                          <label class="form-label" for="prenom">prénom </label>
+                          <input type="text" class="form-control" id="prenom" name="prenom" value="<?php echo $contact->getPrenom(); ?>" required>
+                        </div>
+
+						<div class="mb-3">
+                          <label class="form-label" for="email">Email</label>
+                          <input type="text" class="form-control" id="email" name="email" value="<?php echo $contact->getEmail(); ?>" required>
+                        </div>
+
+						<div class="mb-">
+                          <label class="form-label" for="id_categorie">Catégorie </label>
+						  <select class="form-control" id="id_licencie" name="id_licencie" required>
+							<?php foreach ($licencies as $licencie) : ?>
+								<option value="<?= $licencie->getId() ?>" <?php echo ($licencie->getId() == $contact->getIdLicencie()) ? 'selected' : ''; ?>>
+									<?= $licencie->getNom() ?>
+								</option>
+							<?php endforeach; ?>
+        					</select><br>
+                          </div>
+
+                          <div class="demo-inline-spacing">
+                  
+                        <input type="submit" class="btn rounded-pill btn-primary" name="action" value="Ajouter">
+                        <a class="btn rounded-pill btn-outline-primary" href="index.php?page=contact">Retour</a>
+                  </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl">
+                  
+                </div>
+              </div>
+            </div>
        
 						<!-- Content wrapper -->
 	
@@ -294,3 +299,15 @@
 		</body>
 	</html>
 </body></html>
+
+
+
+
+
+
+
+
+
+
+
+

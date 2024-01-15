@@ -1,49 +1,4 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Ajouter un contact</title>
-    <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <h1>Ajouter un contact</h1>
-    <a href="index.php?page=contact">Retour à la liste des contacts</a>
-
-    <form action="index.php?page=contact&action=add" method="post">
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required><br>
-
-        <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required><br>
-
-        <label for="email">Email :</label>
-        <input type="text" id="email" name="email" required><br>
-
-        <label for="num_tel">Numéro de téléphone :</label>
-        <input type="text" id="num_tel" name="num_tel" required><br>
-
-        <label for="id_licencie">Licencié :</label>
-        <select class="form-control" id="id_licencie" name="id_licencie" required>
-            <option value="">Sélectionner un licencié</option>
-            <?php foreach ($licencies as $licencie) : ?>
-                <option value="<?= $licencie->getId() ?>"><?= $licencie->getNom() ?></option>
-            <?php endforeach; ?>
-        </select><br>
-
-        <input type="submit" name="action" value="Ajouter">
-    </form>
-
-    <?php
-    // Inclure ici la logique pour traiter le formulaire d'ajout de contact
-    ?>
-
-</body>
-</html>
-
-
-
-<!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets/" data-template="vertical-menu-template-free"> <head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
@@ -260,9 +215,61 @@
 						class="content-wrapper">
 						<!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
-	<div class="d-flex flex-row justify-content-between">
+	
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Ajouter Contact</h4>
 
-    
+              <!-- Basic Layout -->
+              <div class="row">
+                <div class="col-xl">
+                  <div class="card mb-4">
+                    <div class="card-body">
+                    <form action="index.php?page=contact&action=add" method="post">
+                        <div class="mb-3">
+                          <label class="form-label" for="nom">Nom</label>
+
+                          <input type="text" class="form-control" id="nom" name="nom" required placeholder=" Entrez votre nom">
+                          </div>
+   
+                        <div class="mb-3">
+                          <label class="prenom" for="prenom">prénom</label>
+                          <input type="text" class="form-control" id="prenom" name="prenom" required>
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label" for="email">Email</label>
+                          <input type="text" class="form-control" id="email" name="email" required >
+                          </div>
+
+                          <div class="mb-3">
+                          <label class="form-label" for="num_tel">Numero tel</label>
+                          <input type="number" class="form-control" id="num_tel" name="num_tel" required >
+                          </div>
+
+                          <div class="mb-3">
+                          <label class="form-label" for="id_licencie">Licencié :</label>
+                            <select class="form-control" id="id_licencie" name="id_licencie" required>
+                                <option value="">Sélectionner un licencié</option>
+                                <?php foreach ($licencies as $licencie) : ?>
+                                    <option value="<?= $licencie->getId() ?>"><?= $licencie->getNom() ?></option>
+                                <?php endforeach; ?>
+                            </select><br>
+                          </div>
+
+                        
+                          <div class="demo-inline-spacing">
+                  
+                        <input type="submit" class="btn rounded-pill btn-primary" name="action" value="Ajouter">
+                        <a class="btn rounded-pill btn-outline-primary" href="index.php?page=contact">Retour</a>
+                  </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl">
+                  
+                </div>
+              </div>
+            </div>
        
 						<!-- Content wrapper -->
 	
@@ -293,3 +300,10 @@
 		</body>
 	</html>
 </body></html>
+
+
+
+
+
+
+

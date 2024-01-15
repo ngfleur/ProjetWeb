@@ -1,6 +1,7 @@
 <?php
 
-class LicencieModel {
+class LicencieModel
+{
 
     private $id;  // clé primaire
     private $num_licence;
@@ -11,11 +12,12 @@ class LicencieModel {
 
     private $id_categorie; // clé étrangère
 
-    
 
 
 
-    public function __construct($id, $num_licence, $nom, $prenom, $id_categorie) {
+
+    public function __construct($id, $num_licence, $nom, $prenom, $id_categorie)
+    {
 
         $this->id = $id;
         $this->num_licence = $num_licence;
@@ -26,17 +28,19 @@ class LicencieModel {
 
         $this->id_categorie = $id_categorie;
 
-        
+
 
     }
 
-    public function getId() {
+    public function getId()
+    {
 
         return $this->id;
 
     }
 
-    public function getNumLicence() {
+    public function getNumLicence()
+    {
 
         return $this->num_licence;
 
@@ -44,7 +48,8 @@ class LicencieModel {
 
 
 
-    public function getNom() {
+    public function getNom()
+    {
 
         return $this->nom;
 
@@ -52,7 +57,8 @@ class LicencieModel {
 
 
 
-    public function getPrenom() {
+    public function getPrenom()
+    {
 
         return $this->prenom;
 
@@ -60,7 +66,8 @@ class LicencieModel {
 
 
 
-    public function getIdCategorie() {
+    public function getIdCategorie()
+    {
 
         return $this->id_categorie;
 
@@ -69,32 +76,36 @@ class LicencieModel {
 
 
 
-    public function setNumLicence($num_licence) {
+    public function setNumLicence($num_licence)
+    {
 
-        $this->num_licence=$num_licence;
-
-    }
-
-
-    public function setNom($nom) {
-
-        $this->nom=$nom;
+        $this->num_licence = $num_licence;
 
     }
 
 
+    public function setNom($nom)
+    {
 
-    public function setPrenom($prenom) {
-
-        $this->prenom=$prenom;
+        $this->nom = $nom;
 
     }
 
 
 
-    public function setIdCategorie($id_categorie) {
+    public function setPrenom($prenom)
+    {
 
-        $this->id_categorie=$id_categorie;
+        $this->prenom = $prenom;
+
+    }
+
+
+
+    public function setIdCategorie($id_categorie)
+    {
+
+        $this->id_categorie = $id_categorie;
 
     }
 
@@ -106,4 +117,3 @@ class LicencieModel {
 }
 
 ?>
-
