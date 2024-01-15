@@ -1,4 +1,8 @@
 <?php
+
+session_start();
+ob_start();
+
 // Inclure le fichier de configuration
 require_once("config/config.php");
 require_once("classes/models/Connexion.php");
@@ -20,10 +24,12 @@ $educateurDAO=new EducateurDAO($connexion);
 
 
 // Exemple de routage basique
-if (isset($_GET['page'])) {
-$page = $_GET['page'];
+if (!isset($_SESSION['login'])) {
+    $page = 'login'; // Redirection des utilisateurs non connectés sur la page de connexion
+} else if (isset($_GET['page'])) {
+    $page = $_GET['page'];
 } else {
-$page = 'home'; // Page par d�faut
+    $page = 'home'; // Page par d�faut
 }
 
 
@@ -62,7 +68,7 @@ switch ($page) {
         $controller = new ContactController($contactDAO, $licencieDAO);
         break;
     case 'educateur':
-        $controller = new EducateurController($educateurDAO, $licencieDAO);
+        $controller = new EducateurController($educateurDAO, $categorieDAO);
         break;
     case 'login':
         $controller = new LoginController($educateurDAO);

@@ -1,8 +1,6 @@
 <?php
 
 class EducateurModel extends LicencieModel {
-
-    private $id;  // clé primaire
     private $email;
 
     private $mdp;
@@ -13,21 +11,14 @@ class EducateurModel extends LicencieModel {
 
     public function __construct($id, $num_licence, $nom, $prenom, $id_categorie, $email, $mdp, $admin, $id_licencie) {
 
-        parent::__construct($id_licencie, $num_licence, $nom, $prenom, $id_categorie);
+        parent::__construct($id, $num_licence, $nom, $prenom, $id_categorie);
 
-        $this->id = $id;
         $this->email = $email;
         
         $this->mdp = $mdp;
 
         $this->admin = $admin;
-
-    }
-
-
-    public function getId() {
-
-        return $this->id;
+        $this->id_licencie = $id_licencie;
 
     }
 

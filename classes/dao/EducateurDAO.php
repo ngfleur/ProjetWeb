@@ -20,6 +20,7 @@ class EducateurDAO {
             return true;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs d'insertion ici
+            echo $e;
             return false;
         }
     }
@@ -27,8 +28,25 @@ class EducateurDAO {
     // MÃ©thode pour rÃ©cupÃ©rer un educateur par son ID
     public function getById($id) {
         try {
-            $stmt = $this->connexion->pdo->prepare("SELECT * FROM educateur INNER JOIN licencie ON educateur.id_licencie = licencie.id WHERE id = ?");
+            $stmt = $this->connexion->pdo->prepare("SELECT educateur.*, licencie.num_licence, licencie.nom, licencie.prenom, licencie.id_categorie  FROM educateur INNER JOIN licencie ON educateur.id_licencie = licencie.id WHERE educateur.id = ?");
             $stmt->execute([$id]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($row) {
+                return new EducateurModel($id, $row['num_licence'], $row['nom'], $row['prenom'],$row['id_categorie'], $row['email'], $row['mdp'], $row['admin'], $row['id_licencie']);
+            } else {
+                return null; // Aucun educateur trouvÃ© avec cet ID
+            }
+        } catch (PDOException $e) {
+            // GÃ©rer les erreurs de rÃ©cupÃ©ration ici
+            return null;
+        }
+    }
+
+    public function getByEmail($email) {
+        try {
+            $stmt = $this->connexion->pdo->prepare("SELECT educateur.*, licencie.num_licence, licencie.nom, licencie.prenom, licencie.id_categorie  FROM educateur INNER JOIN licencie ON educateur.id_licencie = licencie.id WHERE educateur.email = ?");
+            $stmt->execute([$email]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
@@ -45,7 +63,7 @@ class EducateurDAO {
     // MÃ©thode pour rÃ©cupÃ©rer la liste de tous les educateurs
     public function getAll() {
         try {
-            $stmt = $this->connexion->pdo->query("SELECT * FROM educateur INNER JOIN licencie ON educateur.id_licencie = licencie.id ");
+            $stmt = $this->connexion->pdo->query("SELECT educateur.*, licencie.num_licence, licencie.nom, licencie.prenom, licencie.id_categorie  FROM educateur INNER JOIN licencie ON educateur.id_licencie = licencie.id");
             $educateurs = [];
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

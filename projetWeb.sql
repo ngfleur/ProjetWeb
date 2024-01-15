@@ -36,3 +36,16 @@ CREATE TABLE `educateur` (
   `admin` tinyint(1) NOT NULL,
   FOREIGN KEY (`id_licencie`) REFERENCES licencie(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+INSERT INTO `categorie` (`nom`, `code_raccourci`)
+VALUES ('Admins', 'Admins');
+INSERT INTO `licencie` (`num_licence`, `nom`, `prenom`, `id_categorie`)
+VALUES (1, 'admin', 'admin', 1);
+INSERT INTO `educateur` (`email`, `mdp`, `admin`, `id_licencie`)
+VALUES (
+    'adminadmin@admin.com',
+    '$2y$10$mt8Murv9KojRdUrouDrGAuxuH2uhdJQ9LLykBrsbAY67YYg2JKbTi',
+    -- Mot de passe = admin
+    1,
+    1
+  );

@@ -1,16 +1,24 @@
 <?php
-require_once("classes/models/ContactModel.php");
-require_once("classes/dao/ContactDAO.php");
-
 class ContactController {
     private $contactDAO;
+    private $licencieDAO;
 
-    public function __construct(ContactDAO $contactDAO) {
+    public function __construct(ContactDAO $contactDAO, LicencieDAO $licencieDAO) {
         $this->contactDAO = $contactDAO;
+        $this->licencieDAO = $licencieDAO;
+    }
+
+    public function index() {
+        // Récupérer la liste de tous les contacts depuis le modèle
+        $contacts = $this->contactDAO->getAll();
+
+        // Inclure la vue pour afficher la liste des contacts
+        include('views/contact/index.php');
     }
 
     public function show($id) {
         // Récupérer le contact à afficher en utilisant son ID
+        $licencies = $this->licencieDAO->getAll();
         $contact = $this->contactDAO->getById($id);
 
         // Inclure la vue pour afficher les détails du contact
@@ -18,17 +26,20 @@ class ContactController {
     }
 
     public function add() {
+        $licencies = $this->licencieDAO->getAll();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Récupérer les données du formulaire
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
             $email = $_POST['email'];
-            $telephone = $_POST['telephone'];
+            $numTel = $_POST['num_tel'];
+            $idLicencie = $_POST['id_licencie'];
 
             // Valider les données du formulaire (ajoutez des validations si nécessaire)
 
             // Créer un nouvel objet ContactModel avec les données du formulaire
-            $nouveauContact = new ContactModel(0,$nom, $prenom, $email, $telephone);
+            $nouveauContact = new ContactModel(0, $nom, $prenom, $email, $numTel, $idLicencie);
 
             // Appeler la méthode du modèle (ContactDAO) pour ajouter le contact
             if ($this->contactDAO->create($nouveauContact)) {
@@ -47,6 +58,7 @@ class ContactController {
 
     public function edit($id) {
         // Récupérer le contact à modifier en utilisant son ID
+        $licencies = $this->licencieDAO->getAll();
         $contact = $this->contactDAO->getById($id);
 
         if (!$contact) {
@@ -60,7 +72,8 @@ class ContactController {
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
             $email = $_POST['email'];
-            $telephone = $_POST['telephone'];
+            $numTel = $_POST['num_tel'];
+            $idLicencie = $_POST['id_licencie'];
 
             // Valider les données du formulaire (ajoutez des validations si nécessaire)
 
@@ -68,7 +81,8 @@ class ContactController {
             $contact->setNom($nom);
             $contact->setPrenom($prenom);
             $contact->setEmail($email);
-            $contact->setTelephone($telephone);
+            $contact->setNumTel($numTel);
+            $contact->setidLicencie($idLicencie);
 
             // Appeler la méthode du modèle (ContactDAO) pour mettre à jour le contact
             if ($this->contactDAO->update($contact)) {
@@ -111,8 +125,4 @@ class ContactController {
         include('views/contact/delete.php');
     }
 }
-
-
-
 ?>
-
