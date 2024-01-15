@@ -1,5 +1,10 @@
 {{ form_start(form) }}
-
+{% for key, value in app.flashes('error') %}
+	<div class="alert alert-warning alert-dismissible col-6">
+		{{ value }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+{% endfor %}
 {{ form_widget(form, {'attr': {'class': 'col-6'}}) }}
 
 <div>

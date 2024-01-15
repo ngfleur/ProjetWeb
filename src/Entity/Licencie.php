@@ -31,6 +31,10 @@ class Licencie
     #[ORM\OneToOne(mappedBy: 'licencie', cascade: ['persist', 'remove'])]
     private ?Contact $contact = null;
 
+    
+
+   
+
     public function __construct()
     {
     }

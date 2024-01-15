@@ -32,6 +32,7 @@ class MailContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($mailContact);
             $entityManager->flush();
+            $this->addFlash('success', 'Mail créé avec succès.');
 
             return $this->redirectToRoute('app_mail_contact_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +59,7 @@ class MailContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('success', 'Mail modifié avec succès.');
 
             return $this->redirectToRoute('app_mail_contact_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -74,6 +76,7 @@ class MailContactController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$mailContact->getId(), $request->request->get('_token'))) {
             $entityManager->remove($mailContact);
             $entityManager->flush();
+            $this->addFlash('success', 'Mail supprimé avec succès.');
         }
 
         return $this->redirectToRoute('app_mail_contact_index', [], Response::HTTP_SEE_OTHER);

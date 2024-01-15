@@ -32,6 +32,7 @@ class LicencieController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($licencie);
             $entityManager->flush();
+            $this->addFlash('success', 'Licencié créé avec succès.');
 
             return $this->redirectToRoute('app_licencie_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +59,7 @@ class LicencieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('success', 'Licencié modifié avec succès.');
 
             return $this->redirectToRoute('app_licencie_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -74,6 +76,7 @@ class LicencieController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$licencie->getId(), $request->request->get('_token'))) {
             $entityManager->remove($licencie);
             $entityManager->flush();
+            $this->addFlash('success', 'Licencie supprimé avec succès.');
         }
 
         return $this->redirectToRoute('app_licencie_index', [], Response::HTTP_SEE_OTHER);

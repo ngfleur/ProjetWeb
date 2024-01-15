@@ -30,7 +30,7 @@ class Educateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Licencie $licencie = null;
 
     #[ORM\ManyToMany(targetEntity: MailEdu::class, mappedBy: 'educateurs')]

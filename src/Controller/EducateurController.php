@@ -30,13 +30,21 @@ class EducateurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $existingEducateur = $entityManager->getRepository(Educateur::class)->findOneBy(['licencie' => $educateur->getLicencie()]);
+
+            if ($existingEducateur) {
+                $this->addFlash('error', 'Un éducateur a déjà été créé avec ce numéro de licencié.');
+                return $this->redirectToRoute('app_educateur_new');
+            }
+
+
             $isAdmin = $request->request->get('educateur_admin');
             if ($isAdmin) {
                 $educateur->setRoles(['ROLE_ADMIN']);
             }
             $entityManager->persist($educateur);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Éducateur créé avec succès.');
             return $this->redirectToRoute('app_educateur_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -45,6 +53,8 @@ class EducateurController extends AbstractController
             'form' => $form,
         ]);
     }
+   
+
 
     #[Route('/{id}', name: 'app_educateur_show', methods: ['GET'])]
     public function show(Educateur $educateur): Response
@@ -78,6 +88,7 @@ class EducateurController extends AbstractController
             'form' => $form,
         ]);
     }
+    
 
     #[Route('/{id}', name: 'app_educateur_delete', methods: ['POST'])]
     public function delete(Request $request, Educateur $educateur, EntityManagerInterface $entityManager): Response

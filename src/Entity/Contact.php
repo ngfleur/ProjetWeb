@@ -32,7 +32,7 @@ class Contact
     private ?Licencie $licencie = null;
 
     #[ORM\ManyToMany(targetEntity: MailContact::class, mappedBy: 'contacts')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: false)]
     private Collection $mailContacts;
 
     public function __construct()
