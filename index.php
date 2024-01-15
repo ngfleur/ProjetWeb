@@ -55,7 +55,13 @@ if (array_key_exists($page, $controllers)) {
 $controllerName = $controllers[$page];
 // Inclure le fichier du contr�leur
 require_once('controllers/' . $controllerName . '.php');
-echo "Vous appelez ce controller : ".$controllerName;
+if ($page != 'home') {
+    echo "<p><a href='index.php?page=home'>Accueil</a></p>";
+    }
+echo "<p>Vous appelez ce controller : ".$controllerName."</p>";
+if (isset($_SESSION["login"])) {
+echo "<p>Vous êtes connecté en tant qu'administrateur. <a href='index.php?page=login&action=logout'>Se déconnecter</a></p>";
+}
 // Instancier le contr�leur
 switch ($page) {
     case 'categorie':

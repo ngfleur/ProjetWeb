@@ -20,7 +20,7 @@ class LoginController {
                 $mdp = $_POST['mdp'];
 
                 $educateur = $this->educateurDAO->getByEmail($email);
-        
+
                 if ($educateur == null) {
                     echo "Erreur de connexion: Cet éducateur n'a pas été trouvé.";
                 } else if (!password_verify($mdp, $educateur->getMdp())) {
@@ -31,13 +31,13 @@ class LoginController {
                     // Connexion réussie
                     $_SESSION['login'] = true;
                     echo "Connexion réussie";
-                    //header('Location:index.php?page=home');
-                    //exit();
+                    header('Location:index.php?page=home');
+                    exit();
                 }
             }
         }
 
-        //include './views/login.php';
+        include './views/login.php';
     }
 
     public function logout()

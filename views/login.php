@@ -9,7 +9,7 @@
 <body>
     <h1>Connexion</h1>
 
-    <form action="index.php?page=login?action=login" method="post">
+    <form action="index.php?page=login&action=login" method="post">
         <label for="email">Email :</label>
         <input type="email" id="email" name="email" required><br>
 
