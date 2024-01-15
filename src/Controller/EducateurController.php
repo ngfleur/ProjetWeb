@@ -60,7 +60,14 @@ class EducateurController extends AbstractController
         $form = $this->createForm(EducateurType::class, $educateur);
         $form->handleRequest($request);
 
+        
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $isAdmin = $request->request->get('educateur_admin');
+            if ($isAdmin) {
+                $educateur->setRoles(['ROLE_ADMIN']);
+            }
+            $entityManager->persist($educateur);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_educateur_index', [], Response::HTTP_SEE_OTHER);

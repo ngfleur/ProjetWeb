@@ -12,12 +12,22 @@
 				<td>{{ educateur.id }}</td>
 			</tr>
 			<tr>
-				<th>Email</th>
-				<td>{{ educateur.email }}</td>
+				<th>Nom</th>
+				<td>{{ educateur.licencie.nom }}</td>
 			</tr>
 			<tr>
 				<th>Roles</th>
-				<td>{{ educateur.roles ? educateur.roles|json_encode : '' }}</td>
+				<td>
+					{% if educateur.roles and 'ROLE_ADMIN' in educateur.roles %}
+						Administrateur
+					{% else %}
+						Utilisateur
+					{% endif %}
+				</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ educateur.email }}</td>
 			</tr>
 		</tbody>
 	</table>

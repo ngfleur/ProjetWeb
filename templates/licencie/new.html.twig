@@ -1,11 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Licencie{% endblock %}
+{% block title %}Créer un licencié
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Licencie</h1>
-
-    {{ include('licencie/_form.html.twig') }}
-
-    <a href="{{ path('app_licencie_index') }}">back to list</a>
+	{{ include('licencie/_form.html.twig') }}
 {% endblock %}

@@ -16,6 +16,7 @@
 				<thead>
 					<tr>
 						<th>Id</th>
+						<th>Nom</th>
 						<th>Email</th>
 						<th>Roles</th>
 						<th>actions</th>
@@ -27,6 +28,7 @@
 					{% for educateur in educateurs %}
 						<tr>
 							<td>{{ educateur.id }}</td>
+							<td>{{ educateur.licencie.nom }}</td>
 							<td>{{ educateur.email }}</td>
 							<td>
 								{% if educateur.roles and 'ROLE_ADMIN' in educateur.roles %}

@@ -21,23 +21,14 @@ class EducateurType extends AbstractType
             ->add('email', TextType::class, [
                 'attr' => ['class' => 'form-control mb-3']
             ])
-            /*->add('roles', ChoiceType::class, [
-    'label' => 'Role',
-    'required' => false,
-    'attr' => ['class' => 'form-select'], // Utilisez une classe form-select pour un meilleur rendu avec Bootstrap
-    'multiple' => true, // Permet de sélectionner plusieurs rôles
-    'choices' => [
-        'Admin' => 'ROLE_ADMIN', // Ajoutez d'autres rôles au besoin
-        'Pas admin' => 'ROLE_USER', // Ajoutez d'autres rôles au besoin
-    ],
-])*/
+    
 
             ->add('password', TextType::class, [
                 'attr' => ['class' => 'form-control mb-3']
             ])
             ->add('licencie', EntityType::class, [
                 'class' => Licencie::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
                 'attr' => [
                     'class' => 'form-control col-md-10', 
                 ],

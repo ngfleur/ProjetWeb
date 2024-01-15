@@ -25,20 +25,22 @@
 				<tbody class="table-border-bottom-0">
 					{% for mail_edu in mail_edus %}
 						<tr>
-							<td>{{mail_edu.id}}</td>
-							<td>{{mail_edu.dateEnvoi ? mail_edu.dateEnvoi|date('Y-m-d'):''}}</td>
-							<td>{{mail_edu.objet}}</td>
-							<td>{{mail_edu.message}}</td>
+							<td>{{ mail_edu.id }}</td>
+							<td>{{ mail_edu.dateEnvoi ? mail_edu.dateEnvoi|date('Y-m-d H:i:s') : '' }}</td>
+							<td>{{ mail_edu.objet }}</td>
+							<td>{{ mail_edu.message }}</td>
 							<td>
-								<divclass="dropdown">
-									<buttontype="button"class="btnp-0dropdown-togglehide-arrow"data-bs-toggle="dropdown">
-										<iclass="bxbx-dots-vertical-rounded"></i>
+								<div class="dropdown">
+									<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+										<i class="bx bx-dots-vertical-rounded"></i>
 									</button>
-									<divclass="dropdown-menu">
-										<aclass="dropdown-item"href="{{path('app_mail_edu_show',{'id':mail_edu.id})}}">
-											<iclass="bxbx-show-altme-1"></i>Show</a>
-										<aclass="dropdown-item"href="{{path('app_mail_edu_edit',{'id':mail_edu.id})}}">
-											<iclass="bxbx-edit-altme-1"></i>Edit</a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="{{ path('app_mail_edu_show', {'id': mail_edu.id}) }}">
+											<i class="bx bx-show-alt me-1"></i>
+											Show</a>
+										<a class="dropdown-item" href="{{ path('app_mail_edu_edit', {'id': mail_edu.id}) }}">
+											<i class="bx bx-edit-alt me-1"></i>
+											Edit</a>
 										<button class="dropdown-item" type="submit" form="app_mail_edu_delete_{{mail_edu.id}}">
 											<i class="bx bx-trash me-1"></i>
 											Delete</button>
