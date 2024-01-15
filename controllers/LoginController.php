@@ -30,6 +30,7 @@ class LoginController {
                 } else  {
                     // Connexion réussie
                     $_SESSION['login'] = true;
+                    $_SESSION['nom'] = $educateur->getNom();
                     echo "Connexion réussie";
                     header('Location:index.php?page=home');
                     exit();

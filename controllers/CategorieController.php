@@ -72,7 +72,7 @@ class CategorieController {
             // Appeler la méthode du modèle (categorieDAO) pour mettre à jour le categorie
             if ($this->categorieDAO->update($categorie)) {
                 // Rediriger vers la page de détails du categorie après la modification
-                header('Location:index.php?page=categorie&action=edit&id=' . $id);
+                header('Location:index.php?page=categorie');
                 exit();
             } else {
                 // Gérer les erreurs de mise à jour du categorie
