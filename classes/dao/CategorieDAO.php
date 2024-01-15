@@ -19,14 +19,14 @@ class CategorieDAO {
     }
 
     // MÃ©thode pour rÃ©cupÃ©rer une categorie par son ID
-    public function getByCodeRaccourci($code_raccourci) {
+    public function getById($id) {
         try {
-            $stmt = $this->connexion->pdo->prepare("SELECT * FROM categorie WHERE code_raccourci = ?");
-            $stmt->execute([$code_raccourci]);
+            $stmt = $this->connexion->pdo->prepare("SELECT * FROM categorie WHERE id = ?");
+            $stmt->execute([$id]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                return new CategorieModel($row['code_raccourci'], $row['nom']);
+                return new CategorieModel($row['id'], $row['code_raccourci'], $row['nom']);
             } else {
                 return null; // Aucune categorie trouvÃ© avec cet ID
             }
@@ -43,7 +43,7 @@ class CategorieDAO {
             $categories = [];
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $categories[] = new CategorieModel($row['code_raccourci'], $row['nom']);
+                $categories[] = new CategorieModel($row['id'],$row['code_raccourci'], $row['nom']);
             }
 
             return $categories;
@@ -56,8 +56,8 @@ class CategorieDAO {
     // MÃ©thode pour mettre Ã  jour une categorie
     public function update(CategorieModel $categorie) {
         try {
-            $stmt = $this->connexion->pdo->prepare("UPDATE categorie SET nom = ?, code_raccourci = ? WHERE code_raccourci = ?");
-            $stmt->execute([$categorie->getNom(), $categorie->getCodeRaccourci(), $categorie->getCodeRaccourci()]);
+            $stmt = $this->connexion->pdo->prepare("UPDATE categorie SET nom = ?, code_raccourci = ? WHERE id = ?");
+            $stmt->execute([$categorie->getNom(), $categorie->getCodeRaccourci(), $categorie->getId()]);
             return true;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs de mise Ã  jour ici
@@ -66,10 +66,10 @@ class CategorieDAO {
     }
 
     // MÃ©thode pour supprimer une categorie par son ID
-    public function deleteByCodeRaccourci($code_raccourci) {
+    public function deleteById($id) {
         try {
-            $stmt = $this->connexion->pdo->prepare("DELETE FROM categorie WHERE code_raccourci = ?");
-            $stmt->execute([$code_raccourci]);
+            $stmt = $this->connexion->pdo->prepare("DELETE FROM categorie WHERE id = ?");
+            $stmt->execute([$id]);
             return true;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs de suppression ici

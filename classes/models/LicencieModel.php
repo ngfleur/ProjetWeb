@@ -2,37 +2,43 @@
 
 class LicencieModel {
 
-    private $num_licence; // clé primaire
+    private $id;  // clé primaire
+    private $num_licence;
 
     private $nom;
 
     private $prenom;
 
-    private $code_raccourci; // clé étrangère
+    private $id_categorie; // clé étrangère
 
     
 
 
 
-    public function __construct( $num_licence, $nom, $prenom, $code_raccourci) {
+    public function __construct($id, $num_licence, $nom, $prenom, $id_categorie) {
 
+        $this->id = $id;
         $this->num_licence = $num_licence;
 
         $this->nom = $nom;
 
         $this->prenom = $prenom;
 
-        $this->code_raccourci = $code_raccourci;
+        $this->id_categorie = $id_categorie;
 
         
 
     }
 
+    public function getId() {
 
+        return $this->id;
+
+    }
 
     public function getNumLicence() {
 
-        return $this->$num_licence;
+        return $this->num_licence;
 
     }
 
@@ -54,9 +60,9 @@ class LicencieModel {
 
 
 
-    public function getCodeRaccourci() {
+    public function getIdCategorie() {
 
-        return $this->$code_raccourci;
+        return $this->id_categorie;
 
     }
 
@@ -86,9 +92,9 @@ class LicencieModel {
 
 
 
-    public function setCodeRaccourci($code_raccourci) {
+    public function setIdCategorie($id_categorie) {
 
-        $this->code_raccourci=$code_raccourci;
+        $this->id_categorie=$id_categorie;
 
     }
 

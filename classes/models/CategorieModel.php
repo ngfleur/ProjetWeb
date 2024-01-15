@@ -2,26 +2,34 @@
 
 class CategorieModel {
 
-    private $code_raccourci; // clé primaire
+    private $id; // clé primaire
+    private $code_raccourci;
 
     private $nom;
     
 
 
 
-    public function __construct($code_raccourci, $nom) {
+    public function __construct($id, $code_raccourci, $nom) {
 
+        $this->id = $id;
         $this->code_raccourci = $code_raccourci;
-
         $this->nom = $nom;
         
     }
 
 
 
+    public function getId() {
+
+        return $this->id;
+
+    }
+
+
     public function getCodeRaccourci() {
 
-        return $this->$code_raccourci;
+        return $this->code_raccourci;
 
     }
 

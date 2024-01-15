@@ -1,49 +1,82 @@
 <?php
 // Inclure le fichier de configuration
-require_once('config/config.php');
 require_once("config/config.php");
 require_once("classes/models/Connexion.php");
 require_once("classes/models/ContactModel.php");
 require_once("classes/dao/ContactDAO.php");
-$contactDAO=new ContactDAO(new Connexion());
+require_once("classes/models/CategorieModel.php");
+require_once("classes/dao/CategorieDAO.php");
+require_once("classes/models/LicencieModel.php");
+require_once("classes/dao/LicencieDAO.php");
+require_once("classes/models/EducateurModel.php");
+require_once("classes/dao/EducateurDAO.php");
+
+$connexion=new Connexion();
+
+$categorieDAO=new CategorieDAO($connexion);
+$contactDAO=new ContactDAO($connexion);
+$licencieDAO=new LicencieDAO($connexion);
+$educateurDAO=new EducateurDAO($connexion);
 
 
 // Exemple de routage basique
 if (isset($_GET['page'])) {
 $page = $_GET['page'];
 } else {
-$page = 'home'; // Page par défaut
+$page = 'home'; // Page par dï¿½faut
 }
 
 
-// Exemple avec un parametre pour permettre un routage plus sophistiqué
+// Exemple avec un parametre pour permettre un routage plus sophistiquï¿½
 if (isset($_GET['action'])) {
 $action = $_GET['action'];
 } else {
-$action = 'index'; // Page par défaut
+$action = 'index'; // Page par dï¿½faut
 }
 
-// Définir les contrôleurs disponibles
+// Dï¿½finir les contrï¿½leurs disponibles
 $controllers = [
+'login' => 'LoginController',
 'home' => 'HomeController',
-'add' => 'AddContactController',
-'view' => 'ViewContactController',
-'delete' => 'DeleteContactController',
-'edit' => 'EditContactController'
+'categorie' => 'CategorieController',
+'licencie' => 'LicencieController',
+'contact' => 'ContactController',
+'educateur' => 'EducateurController',
 ];
-// Vérifier si le contrôleur demandé existe
+
+// Vï¿½rifier si le contrï¿½leur demandï¿½ existe
 if (array_key_exists($page, $controllers)) {
 $controllerName = $controllers[$page];
-// Inclure le fichier du contrôleur
+// Inclure le fichier du contrï¿½leur
 require_once('controllers/' . $controllerName . '.php');
 echo "Vous appelez ce controller : ".$controllerName;
-// Instancier le contrôleur
-$controller = new $controllerName($contactDAO);
-// Exécuter la méthode par défaut du contrôleur (par exemple, index() ou home())
-$controller->$action(isset($_GET['id'])?$_GET['id']:null); // Vous pouvez ajuster la méthode par défaut selon votre convention
-//c'est l'interet de action qui permet d'appeler une méthode particuliere d'un controller si il en possede plusieurs
-//ici isset($_GET['id'])?$_GET['id']:null est une ternaire(un if else condensé) pour passer la variable à la fonction si elle existe
+// Instancier le contrï¿½leur
+switch ($page) {
+    case 'categorie':
+        $controller = new CategorieController($categorieDAO);
+        break;
+    case 'licencie':
+        $controller = new LicencieController($licencieDAO, $categorieDAO);
+        break;
+    case 'contact':
+        $controller = new ContactController($contactDAO, $licencieDAO);
+        break;
+    case 'educateur':
+        $controller = new EducateurController($educateurDAO, $licencieDAO);
+        break;
+    case 'login':
+        $controller = new LoginController($educateurDAO);
+        break;
+    default:
+        $controller = new HomeController();
+        break;
+}
+// Exï¿½cuter la mï¿½thode par dï¿½faut du contrï¿½leur (par exemple, index() ou home())
+
+$controller->$action(isset($_GET['id'])?$_GET['id']:null); // Vous pouvez ajuster la mï¿½thode par dï¿½faut selon votre convention
+//c'est l'interet de action qui permet d'appeler une mï¿½thode particuliere d'un controller si il en possede plusieurs
+//ici isset($_GET['id'])?$_GET['id']:null est une ternaire(un if else condensï¿½) pour passer la variable ï¿½ la fonction si elle existe
 } else {
-// Page non trouvée, vous redirigerez vers une page d'erreur 404
-echo "Page non trouvée";
+// Page non trouvï¿½e, vous redirigerez vers une page d'erreur 404
+echo "Page non trouvï¿½e";
 } ?>

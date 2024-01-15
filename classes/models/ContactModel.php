@@ -1,53 +1,83 @@
 <?php
 
 
-class Contact {
+class ContactModel {
+        private $id; // clé primaire
+
     public $nom;
     public $prenom;
     public $email;
-    public $numeroTel;
+    public $num_tel;
+    public $id_licencie;
 
-    public function __construct($nom, $prenom, $email, $numeroTel) {
+    public function __construct($id, $nom, $prenom, $email, $num_tel, $id_icencie) {
+         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
-        $this->numeroTel = $numeroTel;
+        $this->num_tel = $num_tel;
+        $this->id_licencie = $id_icencie;
     }
-}
 
-class Categorie {
-    public $nom;
-    public $codeRaccourci;
+    public function getId() {
 
-    public function __construct($nom, $codeRaccourci) {
-        $this->nom = $nom;
-        $this->codeRaccourci = $codeRaccourci;
+        return $this->id;
+
     }
-}
 
-class Licencie {
-    public $numeroLicence;
-    public $contact;
-    public $categorie;
+    public function getNom() {
 
-    public function __construct($numeroLicence, Contact $contact, Categorie $categorie) {
-        $this->numeroLicence = $numeroLicence;
-        $this->contact = $contact;
-        $this->categorie = $categorie;
+        return $this->nom;
+
     }
-}
+    public function getPrenom() {
 
-class Educateur extends Licencie {
-    public $email;
-    public $motDePasse;
-    public $estAdministrateur;
+        return $this->prenom;
 
-    public function __construct($numeroLicence, Contact $contact, Categorie $categorie, $email, $motDePasse, $estAdministrateur = false) {
-        parent::__construct($numeroLicence, $contact, $categorie);
-        $this->email = $email;
-        $this->motDePasse = $motDePasse;
-        $this->estAdministrateur = $estAdministrateur;
     }
+    public function getEmail() {
+
+        return $this->email;
+
+    }
+    public function getNumTel() {
+
+        return $this->num_tel;
+
+    }
+    
+    public function getIdLicencie() {
+
+        return $this->id_licencie;
+
+    }
+
+    public function setNom($nom) {
+
+         $this->nom = $nom;
+
+    }
+    public function setPrenom($prenom) {
+
+         $this->prenom = $prenom;
+
+    }
+    public function setEmail($email) {
+
+         $this->email = $email;
+
+    }
+    public function setNumTel($num_tel) {
+
+         $this->num_tel = $num_tel;
+
+    }
+
+    public function setidLicencie($id_licencie) {
+
+        $this->id_licencie = $id_licencie;
+
+   }
 }
 
 ?>

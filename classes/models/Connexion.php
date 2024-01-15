@@ -3,7 +3,7 @@
 
 class Connexion{
 
-
+public $pdo;
     
     public function __construct(){ 
     
