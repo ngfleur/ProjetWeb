@@ -1,33 +1,37 @@
 <?php
 
-class CategorieModel {
+class CategorieModel
+{
 
     private $id; // clé primaire
     private $code_raccourci;
 
     private $nom;
-    
 
 
 
-    public function __construct($id, $code_raccourci, $nom) {
+
+    public function __construct($id, $code_raccourci, $nom)
+    {
 
         $this->id = $id;
         $this->code_raccourci = $code_raccourci;
         $this->nom = $nom;
-        
+
     }
 
 
 
-    public function getId() {
+    public function getId()
+    {
 
         return $this->id;
 
     }
 
 
-    public function getCodeRaccourci() {
+    public function getCodeRaccourci()
+    {
 
         return $this->code_raccourci;
 
@@ -35,7 +39,8 @@ class CategorieModel {
 
 
 
-    public function getNom() {
+    public function getNom()
+    {
 
         return $this->nom;
 
@@ -44,19 +49,21 @@ class CategorieModel {
 
 
 
-    
 
-    public function setCodeRaccourci($code_raccourci) {
 
-        $this->code_raccourci=$code_raccourci;
+    public function setCodeRaccourci($code_raccourci)
+    {
+
+        $this->code_raccourci = $code_raccourci;
 
     }
 
 
 
-    public function setNom($nom) {
+    public function setNom($nom)
+    {
 
-        $this->nom=$nom;
+        $this->nom = $nom;
 
     }
 
@@ -68,4 +75,3 @@ class CategorieModel {
 }
 
 ?>
-

@@ -1,14 +1,17 @@
 <?php
-class ContactController {
+class ContactController
+{
     private $contactDAO;
     private $licencieDAO;
 
-    public function __construct(ContactDAO $contactDAO, LicencieDAO $licencieDAO) {
+    public function __construct(ContactDAO $contactDAO, LicencieDAO $licencieDAO)
+    {
         $this->contactDAO = $contactDAO;
         $this->licencieDAO = $licencieDAO;
     }
 
-    public function index() {
+    public function index()
+    {
         // Récupérer la liste de tous les contacts depuis le modèle
         $contacts = $this->contactDAO->getAll();
 
@@ -16,7 +19,8 @@ class ContactController {
         include('views/contact/index.php');
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         // Récupérer le contact à afficher en utilisant son ID
         $licencies = $this->licencieDAO->getAll();
         $contact = $this->contactDAO->getById($id);
@@ -25,7 +29,8 @@ class ContactController {
         include('views/contact/show.php');
     }
 
-    public function add() {
+    public function add()
+    {
         $licencies = $this->licencieDAO->getAll();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -56,7 +61,8 @@ class ContactController {
         include('views/contact/add.php');
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         // Récupérer le contact à modifier en utilisant son ID
         $licencies = $this->licencieDAO->getAll();
         $contact = $this->contactDAO->getById($id);
@@ -87,7 +93,7 @@ class ContactController {
             // Appeler la méthode du modèle (ContactDAO) pour mettre à jour le contact
             if ($this->contactDAO->update($contact)) {
                 // Rediriger vers la page de détails du contact après la modification
-                header('Location:index.php?page=contact&action=edit&id=' . $id);
+                header('Location:index.php?page=contact');
                 exit();
             } else {
                 // Gérer les erreurs de mise à jour du contact
@@ -99,7 +105,8 @@ class ContactController {
         include('views/contact/edit.php');
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         // Récupérer le contact à supprimer en utilisant son ID
         $contact = $this->contactDAO->getById($id);
 

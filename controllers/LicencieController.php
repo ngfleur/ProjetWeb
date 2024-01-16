@@ -1,14 +1,17 @@
 <?php
-class LicencieController {
+class LicencieController
+{
     private $licencieDAO;
     private $categorieDAO;
 
-    public function __construct(LicencieDAO $licencieDAO, CategorieDAO $categorieDAO) {
+    public function __construct(LicencieDAO $licencieDAO, CategorieDAO $categorieDAO)
+    {
         $this->licencieDAO = $licencieDAO;
         $this->categorieDAO = $categorieDAO;
     }
 
-    public function index() {
+    public function index()
+    {
         // RÃ©cupÃ©rer la liste de tous les contacts depuis le modÃ¨le
         $licencies = $this->licencieDAO->getAll();
 
@@ -16,7 +19,8 @@ class LicencieController {
         include('views/licencie/index.php');
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         // Récupérer le licencié à afficher en utilisant son ID
         $categories = $this->categorieDAO->getAll();
         $licencie = $this->licencieDAO->getById($id);
@@ -25,7 +29,8 @@ class LicencieController {
         include('views/licencie/show.php');
     }
 
-    public function add() {
+    public function add()
+    {
         $categories = $this->categorieDAO->getAll();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -55,7 +60,8 @@ class LicencieController {
         include('views/licencie/add.php');
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         // Récupérer le licencié à modifier en utilisant son ID
         $categories = $this->categorieDAO->getAll();
         $licencie = $this->licencieDAO->getById($id);
@@ -84,7 +90,7 @@ class LicencieController {
             // Appeler la méthode du modèle (LicencieDAO) pour mettre à jour le licencié
             if ($this->licencieDAO->update($licencie)) {
                 // Rediriger vers la page de détails du licencié après la modification
-                header('Location:index.php?page=licencie&action=edit&id=' . $id);
+                header('Location:index.php?page=licencie');
                 exit();
             } else {
                 // Gérer les erreurs de mise à jour du licencié
@@ -96,7 +102,8 @@ class LicencieController {
         include('views/licencie/edit.php');
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         // Récupérer le licencié à supprimer en utilisant son ID
         $licencie = $this->licencieDAO->getById($id);
 

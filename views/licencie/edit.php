@@ -109,8 +109,8 @@
 
 				<ul class="menu-inner py-1">
 					<!-- Dashboard -->
-					<li class="menu-item active">
-						<a href="{{ path('app_home') }}" class="menu-link">
+					<li class="menu-item ">
+						<a href="index.php?page=home" class="menu-link">
 							<i class="menu-icon tf-icons bx bx-home-circle"></i>
 							<div data-i18n="Analytics">Accueil</div>
 						</a>
@@ -119,7 +119,7 @@
 					<!-- Catégories -->
 					<li class="menu-item">
 						<a href="index.php?page=categorie" class="menu-link">
-							<i class="menu-icon tf-icons bx bx-home-circle"></i>
+							<i class="menu-icon tf-icons bx bx-category"></i>
 							<div data-i18n="Analytics">Catégories</div>
 						</a>
 					</li>
@@ -127,24 +127,24 @@
 					<!-- Licenciés -->
 					<li class="menu-item">
 						<a href="index.php?page=licencie" class="menu-link">
-							<i class="menu-icon tf-icons bx bx-home-circle"></i>
+							<i class="menu-icon tf-icons bx bx-user"></i>
 							<div data-i18n="Analytics">Licenciés</div>
 						</a>
 					</li>
 
-					<!-- licencies -->
+					<!-- Educateurs -->
 					<li class="menu-item">
-						<a href="index.php?page=licencie" class="menu-link">
-							<i class="menu-icon tf-icons bx bx-home-circle"></i>
-							<div data-i18n="Analytics">licencies</div>
+						<a href="index.php?page=educateur" class="menu-link">
+							<i class="menu-icon tf-icons bx bx-user"></i>
+							<div data-i18n="Analytics">Educateurs</div>
 						</a>
 					</li>
 
-					<!-- licencies -->
+					<!-- educateurs -->
 					<li class="menu-item">
-						<a href="index.php?page=licencie" class="menu-link">
-							<i class="menu-icon tf-icons bx bx-home-circle"></i>
-							<div data-i18n="Analytics">licencies</div>
+						<a href="index.php?page=contact" class="menu-link">
+							<i class="menu-icon tf-icons bx bx-phone"></i>
+							<div data-i18n="Analytics">Contact</div>
 						</a>
 					</li>
 
@@ -193,7 +193,7 @@
 												</div>
 												<div class="flex-grow-1">
 													<span class="fw-semibold d-block">
-														<? $_SESSION['nom'] ?>
+														<?= $_SESSION['nom'] ?>
 													</span>
 													<small class="text-muted">Admin</small>
 												</div>
@@ -204,7 +204,7 @@
 										<div class="dropdown-divider"></div>
 									</li>
 									<li>
-										<a class="dropdown-item" href="{{ path('app_profil') }}">
+										<a class="dropdown-item" href="index.php?page=login&action=profil">
 											<i class="bx bx-user me-2"></i>
 											<span class="align-middle">Profil</span>
 										</a>
@@ -271,7 +271,7 @@
 															<?= $categorie->getNom() ?>
 														</option>
 													<?php endforeach; ?>
-												</select><br>
+												</select>
 											</div>
 
 											<div class="demo-inline-spacing">
@@ -318,9 +318,6 @@
 
 					<!-- Place this tag in your head or just before your close body tag. -->
 					<script async defer src="https://buttons.github.io/buttons.js"></script>
-</body>
-
-</html>
 </body>
 
 </html>

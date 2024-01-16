@@ -1,8 +1,10 @@
 <?php
-class LoginController {
+class LoginController
+{
     private $educateurDAO;
 
-    public function __construct(EducateurDAO $educateurDAO) {
+    public function __construct(EducateurDAO $educateurDAO)
+    {
         $this->educateurDAO = $educateurDAO;
     }
 
@@ -27,10 +29,13 @@ class LoginController {
                     echo "Erreur de connexion: Mot de passe incorrect.";
                 } else if (!$educateur->getAdmin()) {
                     echo "Erreur de connexion: Vous n,êtes pas administrateur.";
-                } else  {
+                } else {
                     // Connexion réussie
                     $_SESSION['login'] = true;
                     $_SESSION['nom'] = $educateur->getNom();
+                    $_SESSION['prenom'] = $educateur->getPrenom();
+                    $_SESSION['email'] = $educateur->getEmail();
+
                     echo "Connexion réussie";
                     header('Location:index.php?page=home');
                     exit();
@@ -46,6 +51,12 @@ class LoginController {
         unset($_SESSION["login"]);
         header('Location:index.php?page=login');
         exit();
+    }
+
+    public function profil()
+    {
+        include('./views/profil.php');
+
     }
 }
 
